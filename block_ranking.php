@@ -1,9 +1,6 @@
 
 <?php
-require_once($CFG->libdir.'/gradelib.php');
-require_once($CFG->dirroot.'/user/renderer.php');
-require_once($CFG->dirroot.'/grade/lib.php');
-require_once($CFG->dirroot.'/grade/report/grader/lib.php');
+
 
 class block_ranking extends block_base {
  public function init() {
@@ -18,11 +15,10 @@ class block_ranking extends block_base {
     	}
     
     	
-    	//$grades= grade_regrade_final_grade('2');
-    	//var_dump($grades);
+
     	    	
     	$this->content         =  new stdClass;
-    	$this->content->text   = 'djhfivhih!';
+    	$this->content->text   = '<a href="/proyectoa/moodle/blocks/ranking/rankingnotas.php">Notas</a>';
     	$this->content->footer = 'Footer here...';
     
     	return $this->content;
