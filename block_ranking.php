@@ -19,7 +19,8 @@ class block_ranking extends block_base {
 
     	    	
     	$this->content         =  new stdClass;
-    	$this->content->text   = '<a href="/proyectoa/moodle/blocks/ranking/rankingpruebas.php?id='.$COURSE->id.'">Pruebas</a> <br> 
+    	$this->content->text   = '<a href="/proyectoa/moodle/blocks/ranking/notas.php?id='.$COURSE->id.'">Notas</a> <br>
+    			 				  <a href="/proyectoa/moodle/blocks/ranking/rankingpruebas.php?id='.$COURSE->id.'">Pruebas</a> <br> 
     			                  <a href="/proyectoa/moodle/blocks/ranking/rankingtareas.php?id='.$COURSE->id.'">Tareas</a> <br>
     							  <a href="/proyectoa/moodle/blocks/ranking/rankingactividades.php?id='.$COURSE->id.'">Actividades</a>' ;
     	$this->content->footer = ' ';
