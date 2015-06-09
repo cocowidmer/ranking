@@ -1,23 +1,43 @@
 <?php
-echo"hola mundo <br>";
-
 require_once(dirname(__FILE__) . '/../../config.php');
+$courseid = required_param ( 'id', PARAM_INT ); //brings the right course id
 
-$items = $DB->get_records_sql('SELECT firstname, lastname, grade
-FROM mdl_quiz_grades INNER JOIN
-(mdl_grade_items JOIN mdl_course JOIN mdl_user)
-ON (mdl_quiz_grades.userid = mdl_user.id)
+$items = $DB->get_records_sql ( "SELECT firstname, lastname, qg.grade 
+FROM mdl_quiz_grades as qg 
+INNER JOIN mdl_quiz as q 
+ON (q.id = qg.quiz AND q.course = $courseid) 
+INNER JOIN mdl_user as u 
+ON (qg.userid = u.id) 
 GROUP BY firstname, lastname
-ORDER BY grade ');
+ORDER BY `qg`.`grade`  DESC" );
 
-//var_dump($items);
 
-foreach ($items as $item) 
+
 	
-  // echo $item->firstname ;
-  //  echo $item->lastname;
-    echo $item->grade;
+/*if (!$grade) { //if there are no grades
+	echo "no hay notas todavía"; */
+	
 
-if $item->grade = null {
-	echo "no hay notas todavía";
+// new table that shows position and grades by student
+$table = new html_table ();
+$table->head = array (
+		'posicion',
+		'firstname',
+		'lastname',
+		'grade' 
+);
+
+$position = 0;
+foreach ( $items as $item ) {
+	$position++;
+	$firstname = $item->firstname;
+	$lastname = $item->lastname;
+	$grade = $item->grade;
+	$size = count ( $lastname );
+	$table->data[] = array($position, $firstname, $lastname, $grade);
+	
+	if (!$grade) { //if there are no grades
+		echo "no hay notas todavía";}
 }
+
+echo html_writer::table($table);
