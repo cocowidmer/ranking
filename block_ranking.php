@@ -9,22 +9,27 @@ class block_ranking extends block_base {
     // will only be closed after there is another function added in the next section.
     
  public function get_content() {
- 	global $COURSE;
+ 	global $CFG, $USER, $OUTPUT, $COURSE;
  	
     	if ($this->content !== null) {
     		return $this->content;
     	}
-    
     	
-
-    	    	
-    	$this->content         =  new stdClass;
-    	$this->content->text   = '<a href="/proyectoa/moodle/blocks/ranking/notas.php?id='.$COURSE->id.'">Notas</a> <br>
-    			 				  <a href="/proyectoa/moodle/blocks/ranking/rankingpruebas.php?id='.$COURSE->id.'">Pruebas</a> <br> 
-    			                  <a href="/proyectoa/moodle/blocks/ranking/rankingtareas.php?id='.$COURSE->id.'">Tareas</a> <br>
-    							  <a href="/proyectoa/moodle/blocks/ranking/rankingactividades.php?id='.$COURSE->id.'">Actividades</a>' ;
-    	$this->content->footer = ' ';
-    
+    	$this->content->text = '';
+    	
+    	
+    	$this->content->text .= html_writer::link(new moodle_url('../local/geoo/index.php', array('id'=>$COURSE->id, 'ranking'=>'1')), "Tareas");
+    	$this->content->text .= html_writer::empty_tag('br');
+    	$this->content->text .= html_writer::link(new moodle_url('../local/geoo/index.php', array('id'=>$COURSE->id, 'ranking'=>'2')), "Notas");
+    	$this->content->text .= html_writer::empty_tag('br');
+    	$this->content->text .= html_writer::link(new moodle_url('../local/geoo/index.php', array('id'=>$COURSE->id, 'ranking'=>'3')), "Actividades");
+    	//$lookquiz = new moodle_url('../local/geoo/index.php', array('action'=>'quiz', 'cmid'=>$course->id));
+    	//$lookresource = new moodle_url('../local/geoo/index.php', array('action'=>'resource', 'cmid'=>$course->id));
+    	$this->content->text .= html_writer::empty_tag('br');
+    	
+    	
+    	$this->content->footer = "";
+    	
     	return $this->content;
     }
     
@@ -32,17 +37,12 @@ class block_ranking extends block_base {
     	return true;
     }
     
-    
-
-  
-    
     function has_config() {return true;}
     
 
     
     }   // Here's the closing bracket for the class definition
     
-   
   
     
  
