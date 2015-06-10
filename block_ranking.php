@@ -23,8 +23,7 @@ class block_ranking extends block_base {
     	$this->content->text .= html_writer::link(new moodle_url('../local/geoo/index.php', array('id'=>$COURSE->id, 'ranking'=>'2')), "Notas");
     	$this->content->text .= html_writer::empty_tag('br');
     	$this->content->text .= html_writer::link(new moodle_url('../local/geoo/index.php', array('id'=>$COURSE->id, 'ranking'=>'3')), "Actividades");
-    	//$lookquiz = new moodle_url('../local/geoo/index.php', array('action'=>'quiz', 'cmid'=>$course->id));
-    	//$lookresource = new moodle_url('../local/geoo/index.php', array('action'=>'resource', 'cmid'=>$course->id));
+
     	$this->content->text .= html_writer::empty_tag('br');
     	
     	
